@@ -10,20 +10,28 @@ $options = [
 
 curl_setopt_array($ch, $options);
 $result = curl_exec($ch);
+$code   = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-$quotes = json_decode($result);
+if ($code == 200)
+{
+  $quotes = json_decode($result);
+  $quote  = array_shift($quotes);
 
-if (!is_array($quotes) || !count($quotes)) {
-  exit("An error occurred");
+  $status = 200;
+  $output = <<<EOF
+  <h3>Quote of the day</h3>
+  <blockquote>
+     $quote->content
+     <p>-- <em>$quote->title</em></p>
+  </blockquote>
+EOF;
+}
+else
+{
+  $output = sprintf("API returned status %d", $code);
+  $status = 500;
 }
 
-$quote = array_shift($quotes);
-
-echo <<<EOF
-<h3>Quote of the day</h3>
-<blockquote>
-   $quote->content
-   <p>-- <em>$quote->title</em></p>
-</blockquote>
-EOF;
+http_response_code($status);
+echo $output;

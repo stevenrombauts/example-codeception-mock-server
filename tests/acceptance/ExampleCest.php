@@ -27,8 +27,21 @@ class ExampleCest
     );
 
     $I->amOnPage('/');
+    $I->seeResponseCodeIs(200);
     $I->see('Quote of the day', 'h3');
     $I->see('To see takes time', 'p');
     $I->seeElement('blockquote');
+  }
+
+  public function checkQuoteErrorHandling(AcceptanceTester $I)
+  {
+    self::$__mock_webserver->setResponseOfPath(
+      '/wp-json/posts',
+      new Response('', [], 500)
+    );
+
+    $I->amOnPage('/');
+    $I->seeResponseCodeIs(500);
+    $I->see('API returned status', 'p');
   }
 }
