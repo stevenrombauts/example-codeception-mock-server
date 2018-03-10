@@ -1,5 +1,6 @@
 <?php
 use donatj\MockWebServer\MockWebServer;
+use donatj\MockWebServer\Response;
 
 class ExampleCest
 {
@@ -20,9 +21,14 @@ class ExampleCest
 
   public function checkQuote(AcceptanceTester $I)
   {
+    self::$__mock_webserver->setResponseOfPath(
+      '/wp-json/posts',
+      new Response('[{"ID":2224,"title":"Georgia O\u2019Keeffe","content":"<p>To see takes time.<\/p>\n","link":"https:\/\/quotesondesign.com\/georgia-okeeffe-2\/"}]')
+    );
+
     $I->amOnPage('/');
     $I->see('Quote of the day', 'h3');
+    $I->see('To see takes time', 'p');
     $I->seeElement('blockquote');
-    $I->dontSee('An error occurred');
   }
 }
