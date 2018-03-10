@@ -2,5 +2,5 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost:8080/myapp
+            url: http://localhost:8080/
         - \Helper\Acceptance

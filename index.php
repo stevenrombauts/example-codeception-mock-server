@@ -19,6 +19,7 @@ if (!is_array($quotes) || !count($quotes)) {
 $quote = array_shift($quotes);
 
 echo <<<EOF
+<h3>Quote of the day</h3>
 <blockquote>
    $quote->content
    <p>-- <em>$quote->title</em></p>
