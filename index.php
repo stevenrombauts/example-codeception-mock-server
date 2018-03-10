@@ -1,8 +1,10 @@
 <?php
+$config = require('config.php');
+
 $ch = curl_init();
 
 $options = [
-  CURLOPT_URL            => 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
+  CURLOPT_URL            => $config['API_URL'] . '?filter[orderby]=rand&filter[posts_per_page]=1',
   CURLOPT_RETURNTRANSFER => true
 ];
 
