@@ -1,6 +1,6 @@
 ## Example: Codeception with Mock HTTP server
 
-This repository contains the sample code used in my blog post [Mock API requests in Codeception Acceptance tests](https://stevenrombauts.be/2018/03/mock-api-requests-in-codeception-acceptance-tests/)
+This repository contains the sample code used in my blog post [Mock API requests in Codeception Acceptance tests](https://stevenrombauts.be/2018/03/mock-api-requests-in-codeception-acceptance-tests/).
 
 ### Installation
 
@@ -11,13 +11,19 @@ This repository contains the sample code used in my blog post [Mock API requests
     cd example-codeception-mock-server
     ```
 
-1. Run Composer install
+1. Run Composer install to fetch the dependencies:
 
     ```shell
     composer install
     ```
 
-1. Copy `config.php-example` to `config.php`.
+1. Copy `config.php-example` to `config.php`:
+
+
+    ```shell
+    cp config.php-example config.php
+    ```
+
 1. Start PHP's standalone webserver:
 
     ```shell
